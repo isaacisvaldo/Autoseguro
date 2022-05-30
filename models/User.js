@@ -1,0 +1,80 @@
+const Sequelize = require("sequelize");
+const connection = require("../database/database");
+
+const User = connection.define('users',{
+      name:{
+          type:Sequelize.STRING,
+          allowNull:false
+       },
+       email:{
+        type:Sequelize.STRING,
+        allowNull:false
+     },
+     tel:{
+        type:Sequelize.INTEGER,
+        allowNull:false
+     },
+     user_name:{
+        type:Sequelize.STRING,
+        allowNull:false
+     },
+     img:{
+        type:Sequelize.STRING,
+        allowNull:false
+     },
+     password:{
+        type:Sequelize.STRING,
+        allowNull:false
+     },
+     provincia:{
+      type:Sequelize.STRING,
+      allowNull:false
+   },
+   municipio:{
+    type:Sequelize.STRING,
+    allowNull:false
+ },
+ sexo:{
+   type:Sequelize.STRING,
+   allowNull:false
+ }
+ ,
+ endereco:{
+   type:Sequelize.STRING,
+   allowNull:false,
+   default:"Desconhecido"
+ },nascimento:{
+   type:Sequelize.DATEONLY,
+   allowNull:false,
+   default:"1000-01-01"
+ },estado_civil:{
+   type:Sequelize.STRING,
+   allowNull:false,
+   default:"SOLETEIRO"
+ },nif:{
+   type:Sequelize.STRING,
+   allowNull:false,
+   default:"000-000-000"
+ },
+     estado:{
+        type:Sequelize.INTEGER,
+        allowNull:false,
+        default:0
+     },
+     role:{
+        type:Sequelize.INTEGER,
+        allowNull:false,
+        default:0
+     },
+     createdAt:{
+      type:Sequelize.DATEONLY,
+      allowNull:false
+   },
+   updatedAt:{
+    type:Sequelize.DATEONLY,
+    allowNull:false
+ }
+});
+
+//User.sync({force:true});
+module.exports = User;
