@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprovativo_seguro<%= apolice.secret %></title>
+   
+
+<link rel="stylesheet" href="/css-print/comprovativo.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card">
+        <div class="left-column background-left-column">
+            <h6>Compravativo de seguro</h6>
+            <h4>Nº:<%=apolice.secret%></h4>
+            <img src="<%=src%> " alt="" aria-hidden="true"> 
+            <p class="data">  ©
+                <script>
+                    document.write(new Date().getFullYear())
+                </script></p>
+            
+        </div>
+
+        <div class="right-column">
+            <div>
+                <h4>Auto.seguro</h4>
+                <h6>O seguro auto mas proximo de si</h6>
+            </div>
+            <h6>Matricula:<%=apolice.matricula%></h6>
+            <h6> Estado:<% if(apolice.estado == 1 ){%>
+                <i style="color: rgb(17, 181, 17);"> Operacional</i>
+                
+                
+             <%} else{%>
+                <i style="color: rgb(213, 14, 14);"> Fora de Uso</i>
+             <%}%></h6>
+             <h6>Início:<%=apolice.dia_inicio%></h6><h6>Fim:<%=apolice.dia_fim%></h6>
+            <p>Para mas informações da seguradora ou do assegurado faça a leitura do QR code para saer a respeito do seu acordo com a nossa
+                seguradora, e acompahe de par/passo para saber o estado da apolice com o veiculo em questão e saber quantos dias faltam para o termino do acordo  </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener("load", window.print());
+    window.location = '/admin/veiculo/apolice/'+ `<%= apolice.matricula %>`
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<%- include partials/head.ejs %> 
+
+<body>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <!--Nav bar-->
+     <%- include partials/navbar.ejs %> 
+      <!--sidebar-->
+    
+<%- include partials/sidebar.ejs %> 
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>Profile</h1>
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="#"></a></div>
+              <div class="breadcrumb-item">Profile</div>
+            </div>
+          </div>
+          <div class="page-error">
+            <div class="page-inner">
+              <div class="card-body">
+                <div class="empty-state" data-height="250">
+                  <img src="/pages/img/undraw_delivery.svg" alt="" data-height="200">
+                  <h2>HTTP Find</h2>
+                  <p class="lead">
+                    introduz a matricula abaixo para checar o estado da viatura ,concernente a sua apolice
+                  </p>
+                </div>
+              </div>
+              
+         
+              <div class="page-search">
+                <form action="/corretor/analizando-matricula" method="post">              	
+                  <div class="form-group floating-addon floating-addon-not-append">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">                          
+                          <i class="fas fa-search"></i>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="pesquisar matricula" name="matricula" required>
+                      <div class="input-group-append">
+                        <button class="btn btn-primary btn-lg" type="submit">
+                          Search
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <footer class="main-footer">
+        <div class="footer-left">
+          Copyright &copy; <script>
+                document.write(new Date().getFullYear())
+            </script>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+<%- include partials/footer.ejs %> 
