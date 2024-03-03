@@ -111,17 +111,20 @@ router.post("/criarconta", async(req,res)=>{
 
                    
                      if (!(matricula===""||modelo===""||marca===""||servico===""||numero_motor===""||numero_quadro===""||medida_pneumaticos==="")) {
-                        let hasUpper1 = /^[A-Z]{2}[-][0-9]{2}[-][0-9]{2}[-][A-Z]{2}$/.test(matricula)
-                      n  =/[A-Z][0-9]/.test(numero_quadro)
-                      ci =/[0-9]/.test(cilindrada)
-                      me = /[0-9][A-Z]/.test(medida_pneumaticos)
-                      nmotor = /[A-Z][0-9]/.test(numero_motor)
-                            if(hasUpper1 == false || n== false||ci== false||me== false||nmotor== false){
+                     //    let hasUpper1 = /^[A-Z]{2}[-][0-9]{2}[-][0-9]{2}[-][A-Z]{2}$/.test(matricula)
+                     //  n  =/[A-Z][0-9]/.test(numero_quadro)
+                     //  ci =/[0-9]/.test(cilindrada)
+                     //  me = /[0-9][A-Z]/.test(medida_pneumaticos)
+                     //  nmotor = /[A-Z][0-9]/.test(numero_motor)
+                    // if(hasUpper1 == false || n== false||ci== false||me== false||nmotor== false){
+                       let f =0
+                         if(f==1){
                                req.flash("errado","Dados invalidos")
-                  res.redirect("/registar_se")
+                          res.redirect("/registar_se")
                         }else{
-                     const veiculo = await Veiculo.findOne({ where: { [Op.or]: [{ matricula: matricula }, { numero_motor: numero_motor }] } }).catch(err =>{console.log(err)})
-                                 if(!veiculo){
+                           const veiculo =0
+                         //const veiculo = await Veiculo.findOne({ where: { [Op.or]: [{ matricula: matricula }, { numero_motor: numero_motor }] } }).catch(err =>{console.log(err)})
+                                 if(veiculo==0){
                                     var salt = bcrypt.genSaltSync(10);
                                     var hash = bcrypt.hashSync(senha, salt);
                                     const user = await User.create({name:name, email: email,tel:tel,user_name:user_name,img:'unknown.png',password: hash,provincia:provincia,municipio:municipio,endereco:endereco,sexo:sexo,nascimento:nascimento,estado_civil:estado_civil,nif:nif,estado:1,role:0}).catch(err =>{console.log(err);req.flash('info', "Occoreeu um problema")});
@@ -133,7 +136,7 @@ router.post("/criarconta", async(req,res)=>{
                                           modelo: modelo,
                                           cor: cor,
                                          
-                                     servico:servico,
+                                          servico:servico,
                                           matricula: matricula,
                                          
                                           lotacao: lotacao,
