@@ -40,7 +40,7 @@ const main = async () => {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   app.use(express.json());
   app.use(routes)
-  const port = process.env.PORT || 8085;
+  const port = process.env.PORT || 3000;
   app.use(function  (req,res,next){
    res.send("Page not found!")
 }) 
