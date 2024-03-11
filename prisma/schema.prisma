@@ -1,0 +1,168 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Administrator {
+  id                   Int                    @id @default(autoincrement())
+  name                 String
+  email                String                 @unique
+  nif                  String                 @unique
+  phone                String               @unique
+  password             String
+  accessLevel          AccessLevel?            @relation(fields: [accessLevelId], references: [id])
+  accessLevelId        Int?
+  isActive             Boolean                @default(true)
+  avatarUrl            String?
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  activityHistoryAdmin ActivityHistoryAdmin[]
+  teamLeader           TeamAdmin[]            @relation("teamLeader")
+  teamMembers          TeamAdmin[]            @relation("teamMembers")
+
+  @@map("administrator")
+}
+
+model TeamAdmin {
+  id          Int             @id @default(autoincrement())
+  name        String
+  description String?
+  leader      Administrator?  @relation("teamLeader", fields: [leaderId], references: [id])
+  leaderId    Int?
+  members     Administrator[] @relation("teamMembers")
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@map("teamAdmin")
+}
+
+model AccessLevel {
+  id             Int             @id @default(autoincrement())
+  level          String          @unique
+  administrators Administrator[]
+
+  @@map("accessLevel")
+}
+
+model ActivityHistoryAdmin {
+  id              Int           @id @default(autoincrement())
+  administrator   Administrator @relation(fields: [administratorId], references: [id])
+  administratorId Int
+  title           String?
+  description     String?
+
+  @@map("activityHistoryAdmin")
+}
+
+model Student {
+  id                     Int                      @id @default(autoincrement())
+  Studentname            String
+  email                  String                   @unique
+  nif                    String                   @unique
+  phone                  String?                  @unique
+  password               String
+  firstName              String
+  lastName               String
+  dateOfBirth            DateTime?
+  isActive               Boolean                  @default(true)
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @updatedAt
+  activityHistoryStudent ActivityHistoryStudent[]
+  enrollment             Enrollment[]
+
+  @@map("Student")
+}
+
+model ActivityHistoryStudent {
+  id          Int     @id @default(autoincrement())
+  Student     Student @relation(fields: [StudentId], references: [id])
+  StudentId   Int
+  title       String?
+  description String?
+
+  @@map("activityHistoryStudent")
+}
+
+model Instructor {
+  id        Int         @id @default(autoincrement())
+  name      String
+  email     String      @unique
+  nif       String      @unique
+  phone     String?     @unique
+  bio       String?
+  isActive  Boolean     @default(true)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  specialty Specialty[]
+  class     Class[]
+  presence  Presence[]
+}
+
+model Specialty {
+  id           Int        @id @default(autoincrement())
+  name         String
+  description  String?
+  instructor   Instructor @relation(fields: [instructorId], references: [id])
+  instructorId Int
+}
+
+model Presence {
+  id           Int        @id @default(autoincrement())
+  instructor   Instructor @relation(fields: [instructorId], references: [id])
+  instructorId Int
+  date         DateTime
+  present      Boolean     
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@map("presence")
+}
+
+model Formation {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  startDate   DateTime
+  endDate     DateTime
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  class       Class[]
+}
+
+model Class {
+  id           Int          @id @default(autoincrement())
+  instructor   Instructor   @relation(fields: [instructorId], references: [id])
+  instructorId Int
+  formation    Formation    @relation(fields: [formationId], references: [id])
+  formationId  Int
+  name         String?
+  description  String?
+  time         String?
+  duration     String?
+  material     Material[]
+  enrollment   Enrollment[]
+
+  @@map("class")
+}
+
+model Material {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String?
+  fileUrl     String?
+  class       Class   @relation(fields: [classId], references: [id])
+  classId     Int
+}
+
+model Enrollment {
+  id        Int     @id @default(autoincrement())
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId Int
+  class     Class   @relation(fields: [classId], references: [id])
+  classId   Int
+}
