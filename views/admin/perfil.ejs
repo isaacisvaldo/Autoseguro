@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<%- include partials/head.ejs %> 
+
+<body>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <!--Nav bar-->
+     <%- include partials/navbar.ejs %> 
+      <!--sidebar-->
+    
+<%- include partials/sidebar.ejs %> 
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="#"></a></div>
+              <div class="breadcrumb-item">Profile</div>
+            </div>
+          </div>
+          <div class="section-body">
+            <div class="row mt-sm-4">
+              <div class="col-12 col-md-12 col-lg-6">
+                <div class="card author-box card-primary">
+                  <div class="card-body">
+                    <div class="author-box-left">
+                       <img alt="image" src="/uploads/<%= admin.img %> " class="rounded-circle author-box-picture" data-toggle="tooltip" title="<%= admin.name %>">
+                      <div class="avatar-badge" title="Editar foto" data-toggle="tooltip"> <a href="/admin/upload/"><i class="fas fa-camera"></i></a></div>
+                     
+                    </div>
+                    <div class="author-box-details">
+                      <div class="author-box-name">
+                        <a href="#"></a>
+                      </div>
+                      <div class="author-box-job">Admin</div>
+                      <div class="author-box-description">
+                        <p>perfil de utilizador.</p>
+                      </div>
+                      <div class="mb-2 mt-3"><div class="text-small font-weight-bold"></div></div>
+                     
+                      <div class="w-100 d-sm-none"></div>
+                      <div class="card-footer text-center">
+                        <div class="font-weight-bold mb-2"><%= admin.name %></div>
+                        <a href="#" class="btn btn-social-icon btn-facebook mr-1">
+                          <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="btn btn-social-icon btn-twitter mr-1">
+                          <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-social-icon btn-github mr-1">
+                          <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="btn btn-social-icon btn-instagram">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-lg-6">
+                <div class="card">
+                  <form method="post" class="needs-validation" novalidate="">
+                    <div class="card-header">
+                      <h4>Edit Profile</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">                               
+                          <div class="form-group col-md-6 col-12">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" disabled value="<%= admin.name %>" required="">
+                            <div class="invalid-feedback">
+                              Please fill in the first name
+                            </div>
+                          </div>
+                          <div class="form-group col-md-6 col-12">
+                            <label>Nome Usuario</label>
+                            <input type="text" class="form-control" disabled value="<%= admin.user_name %>" required="">
+                            <div class="invalid-feedback">
+                              Please fill in the last name
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-md-6 col-12">
+                            <label>Email</label>
+                            <input type="email" class="form-control" disabled value="<%= admin.email %>" required="">
+                            <div class="invalid-feedback">
+                              Please fill in the email
+                            </div>
+                          </div>
+                          <div class="form-group col-md-6 col-12">
+                            <label>Phone</label>
+                            <input type="tel" class="form-control" disabled value="<%= admin.tel %>">
+                          </div>
+                        </div>
+                       
+                   
+                    </div>
+                    <div class="card-footer text-right">
+                      <a href="#" class="btn btn-primary btn-round"  data-toggle="modal" data-target="#exampleModal">Editar perfil</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </section>
+      </div>
+      <footer class="main-footer">
+        <div class="footer-left">
+          Copyright &copy; <script>
+                document.write(new Date().getFullYear())
+            </script>
+        </div>
+        <div class="footer-right">
+          
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="POST" action="/admin/perfil/update" class="needs-validation" novalidate="" >
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="frist_name">Nome:</label>
+                      <input id="frist_name" type="text" class="form-control" name="name" value="<%= admin.name %> " autofocus required>
+                      <div class="invalid-feedback">
+                        nome esta vazio
+                        
+                      </div>
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="last_name">Username:</label>
+                      <input id="last_name" type="text" class="form-control" name="user_name" value="<%= admin.user_name %> " autofocus required>
+                      <div class="invalid-feedback">
+                        nome de usuario esta vazio
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="frist_name">E-mail:</label>
+                      <input id="frist_name" type="email" class="form-control" name="email" value="<%= admin.email %> " autofocus required>
+                      <div class="invalid-feedback">
+                        nome esta vazio
+                        
+                      </div>
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="last_name">Contacto:</label>
+                      <input id="last_name" type="text" class="form-control" name="tel" value="<%= admin.tel %> " autofocus required>
+                      <div class="invalid-feedback">
+                        nome de usuario esta vazio
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                 
+
+                 
+                  <div class="form-divider">
+                   
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label>Provincia:</label>
+                      <select required class=" form-control " name="provincia" id="slctprovincia" onchange="populate(this.id,'slctmunicipio')"> 
+                  
+                        <option disabled="disabled" selected="selected"> Escolha a província</option>
+                        <option value="luanda">Luanda</option>
+                           <option value="benguela">Benguela</option>
+                           <option value="bengo">Bengo</option>
+                           <option value="bié">Bié</option>
+                           <option value="cabinda">Cabinda</option>
+                           <option value="cuando-cubango">Cuando-Cubango</option>
+                           <option value="cuanza norte">Cuanza Norte</option>
+                           <option value="cuanza sul">Cuanza Sul</option>
+                           <option value="cunene">Cunene</option>
+                           <option value="huambo">Huambo</option>
+                           <option value="huíla">Huíla</option>
+                           <option value="lunda norte">Lunda Norte</option>
+                           <option value="lunda sul">Lunda Sul</option>
+                           <option value="malange">Malange</option>
+                           <option value="moxico">Moxico</option>
+                           <option value="namibe">Namibe</option>
+                           <option value="uíge">Uíge</option>
+                           <option value="zaire">Zaire</option>
+                      
+                      </select>
+                      <div class="invalid-feedback">
+                        Provincia esta vazio
+                         
+                       </div>
+                      
+                    </div>
+                    <div class="form-group col-6">
+                      <label>Municipio:</label>
+                     
+                      <select  required name="municipio" id="slctmunicipio" class="form-control"> <option disabled="disabled" selected="selected"> Escolha o municipio</option></select>
+                      <div class="invalid-feedback">
+                        Municipio esta vazio
+                         
+                       </div>
+                    </div>
+                  </div>
+                
+             
+
+                 
+
+
+                  <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="agree" class="custom-control-input" id="agree" autofocus
+                        required>
+                      <label class="custom-control-label" for="agree">I agree with the terms and
+                        conditions</label>
+                      
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                      Atualizar
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="/assets/modules/jquery.min.js"></script>
+  <script src="/assets/modules/popper.js"></script>
+  <script src="/assets/modules/tooltip.js"></script>
+  <script src="/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="/assets/modules/moment.min.js"></script>
+  <script src="/assets/js/stisla.js"></script>
+  <script src="/script/ApiProvincia-municipio.js"></script>
+  
+  <!-- JS Libraies -->
+  <script src="/assets/modules/summernote/summernote-bs4.js"></script>
+  <script src="/assets/modules/sweetalert/sweetalert2.all.min.js"></script>
+  <% if(certo.length >0){%>
+    <script>
+     Swal.fire(
+    'Showww!',
+    '`<%=certo %>`!',
+    'success'
+  )
+
+    </script>
+    <% }else if(errado.length >0) {%>
+      <script>
+        Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: '`<%=errado %>`!',
+
+})
+        
+      </script>
+      <% }%>
+
+  <!-- Page Specific JS File -->
+  
+  <!-- Template JS File -->
+  <script src="/assets/js/scripts.js"></script>
+  <script src="/assets/js/custom.js"></script>
+</body>
+</html>

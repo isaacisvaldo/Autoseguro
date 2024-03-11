@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<%- include partials/head.ejs %> 
+
+
+<body>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <!--Nav bar-->
+     <%- include partials/navbar.ejs %> 
+      <!--sidebar-->
+    
+<%- include partials/sidebar.ejs %> 
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <div class="section-header-breadcrumb">
+              
+              <div class="breadcrumb-item"><a href="#">Registos</a></div>
+              <div class="breadcrumb-item active">marcacoes</div>
+            </div>
+          </div>
+
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>                                 
+                          <tr>
+                            
+                            <th>Img</th>
+                            <th>Nome</th>
+                            <th>Quantia</th>
+                            <th>N° Apólive</th>
+                            <th>Data & Time</th>
+                           <th>Status</th>
+                            <th>Accão</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% marcacoes.forEach(marcacoes => { %> 
+                              <% if(marcacoes.estado == 1){%> 
+                              <tr>
+                                
+                                  <td> <img alt="image" src="/uploads/<%=marcacoes.user.img %> " class="rounded-circle" width="35" data-toggle="tooltip" title="<%= marcacoes.user.user_name %> "></td>
+                                  <td><%= marcacoes.user.user_name %> </td>
+                                  <td><%= marcacoes.quantia_pagar%></td>
+                                  <td><%= marcacoes.secret%></td>
+                                  <td><%= marcacoes.createdAt%></td>
+                                  <td><div class="badge badge-success">Pago</div></td>
+                                  
+                                  
+                                  
+                                 
+                                  <td>
+                                    <div class=" dropdown">
+                                      <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+                                      <div class="dropdown-menu">
+                                        <div class="dropdown-title">Opções</div>
+                                        <a onclick="confirmar( `<%= marcacoes.id %>`)" class="dropdown-item has-icon text-danger"><i class="fas fa-trash-alt"></i> Deletar</a>
+                                        <div class="dropdown-divider"></div>
+                                       
+                                      </div>
+                                    </div>
+                                      </td>
+                              </tr>
+                                <%} else if(marcacoes.estado > 1){%> 
+                                  <tr>
+                                    
+                                    <td> <img alt="image" src="/uploads/<%=marcacoes.user.img %> " class="rounded-circle" width="35" data-toggle="tooltip" title="<%= marcacoes.user.user_name %> "></td>
+                                  <td><%= marcacoes.user.user_name %> </td>
+                                  <td><%= marcacoes.quantia_pagar%> Kz</td>
+                                  <td><%= marcacoes.secret%></td>
+                                  <td>indefinido</td>
+                                      <td><div class="badge badge-danger"> Falhou</div></td>
+                                      
+                                      
+                                     
+                                      <td>
+                                        <div class=" dropdown">
+                                          <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+                                          <div class="dropdown-menu">
+                                            <div class="dropdown-title">Opções</div>
+                                            <a  class="dropdown-item has-icon"><i class="fas fa-chart-line"></i> Prolongar</a>
+                                            <a onclick="confirmar( `<%= marcacoes.id %>`)" class="dropdown-item has-icon text-danger"><i class="fas fa-trash-alt"></i> Deletar</a>
+                                            <div class="dropdown-divider"></div>
+                                           
+                                          </div>
+                                        </div>
+                                          </td>
+                                  </tr>
+                                  <%}%> 
+                          <%})%>
+                      </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                
+           
+            
+          </div>
+        </section>
+      </div>
+     
+      <footer class="main-footer">
+        <div class="footer-left">
+          Copyright &copy; <script>
+                document.write(new Date().getFullYear())
+            </script>
+        </div>
+        <div class="footer-right">
+          
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="/assets/modules/jquery.min.js"></script>
+  <script src="/assets/modules/popper.js"></script>
+  <script src="/assets/modules/tooltip.js"></script>
+  <script src="/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="/assets/modules/moment.min.js"></script>
+  <script src="/assets/js/stisla.js"></script>
+
+ 
+  
+  <!-- JS Libraies -->
+  <script src="/assets/modules/datatables/datatables.min.js"></script>
+  <script src="/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  <script src="/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
+  <script src="/assets/modules/jquery-ui/jquery-ui.min.js"></script>
+  <script src="/assets/js/page/modules-ion-icons.js"></script>
+  <script src="/script/ApiProvincia-municipio.js"></script>
+
+  <!-- Page Specific JS File -->
+  <script src="/assets/js/page/modules-datatables.js"></script>
+  <script src="/assets/js/page/bootstrap-modal.js"></script>
+  <script src="/assets/modules/sweetalert/sweetalert2.all.min.js"></script>
+  <% if(certo.length >0){%>
+    <script>
+     Swal.fire(
+    'Showww!',
+    '<%=certo %>!',
+    'success'
+  )
+
+    </script>
+    <% }else if(errado.length >0) {%>
+      <script>
+        Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: '<%=errado %>!',
+
+})
+        
+      </script>
+      <% }%>
+  <script>
+  function confirmar(id){
+    
+Swal.fire({
+  title: 'Do you want to save the changes?',
+icon:'warning',
+  showCancelButton: true,
+  confirmButtonColor:'#3085d6',
+  cancelButtonColor:'#d33',
+  confirmButtonText: 'Confirmar',
+
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below   */
+  if (result.isConfirmed) {
+
+   window.location = '/admin/registo-3/delete/'+id;
+  } else if (result.isDenied) {
+    Swal.fire('Erro ao eliminar', '', 'info')
+  }
+})
+  }
+  </script>
+  
+  <!-- Template JS File -->
+  <script src="/assets/js/scripts.js"></script>
+  <script src="/assets/js/custom.js"></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<%- include partials/head.ejs %> 
+
+
+<body>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <!--Nav bar-->
+     <%- include partials/navbar.ejs %> 
+      <!--sidebar-->
+    
+<%- include partials/sidebar.ejs %> 
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+           
+            <div class="section-header-breadcrumb">
+              
+              <div class="breadcrumb-item"><a href="#">Modules</a></div>
+              <div class="breadcrumb-item active">users</div>
+            </div>
+          </div>
+
+          <div class="section-body">
+          
+
+            <div class="row">
+              <div class="col-12">
+                  <div class="card-body">
+                    
+                      <a href="#" data-toggle="modal" data-target="#exampleModal">
+                        <h2><i class="ion-plus-circled" title="Adicionar novo especialistas" data-toggle="tooltip"  ></i></h2>
+                      </a>
+                      
+                  
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>                                 
+                          <tr>
+                            <th class="text-center">
+                              #
+                            </th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Pic</th>
+                            <th>sexo</th>
+                            <th>Resolução</th>
+                            <th>Acção</th>
+                          </tr>
+                        </thead>
+                        <tbody>   
+                          <% w.forEach(users => { %>                              
+                          <tr>
+                            <td>
+                              <%= users.id %> 
+                            </td>
+                            <td><%= users.name %> </td>
+                            <td><%= users.email %> </td>
+                            
+                            <td>
+                              <img alt="image" src="/uploads/<%= users.img %> " class="rounded-circle" width="35" data-toggle="tooltip" title="<%= users.user_name %> ">
+                            </td>
+                          
+                            <td>
+                              <%if(users.sexo=="MASCULINO"){%>
+                                <div class="badge badge-success"><%= users.sexo %></div> 
+                              
+                             
+                               <%}else{%> 
+                                <div class="badge badge-warning"><%= users.sexo %></div>
+                             
+                                 <%} %>
+                            </td>
+                            <td>
+                              <%= users.valor %> 
+                            </td>
+                            <td>
+                              <div class=" dropdown">
+                                <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+                                <div class="dropdown-menu">
+                                  <div class="dropdown-title">Opções</div>
+                                  <a class="dropdown-item has-icon" href="/admin/user/detalhes/<%=users.id%>" title="Detalhes Usuário" data-toggle="tooltip"><i class="fas fa-eye"></i> Ver</a>
+                                  <a  class="dropdown-item has-icon" href="/admin/users/edit/<%= users.id %> " title="Editar Usuário" data-toggle="tooltip"><i class="fas fa-edit" ></i>Editar</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item has-icon text-danger" onclick="confirmar( `<%= users.id %>`)"  title="Deletar Usuário" data-toggle="tooltip"><i class="fas fa-trash-alt"></i> Deletar</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                         
+                          <% }) %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                
+           
+            
+          </div>
+        </section>
+      </div>
+      
+      <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Cadastrando Funcionario</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST" action="/admin/new/user" class="needs-validation" novalidate="" >
+                <div class="row">
+                  <div class="form-group col-6">
+                    <label for="frist_name">Nome:</label>
+                    <input id="frist_name" type="text" class="form-control" name="name" autofocus required>
+                    <div class="invalid-feedback">
+                      nome esta vazio
+                      
+                    </div>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="last_name">Username:</label>
+                    <input id="last_name" type="text" class="form-control" name="user_name" autofocus required>
+                    <div class="invalid-feedback">
+                      nome de usuario esta vazio
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-6">
+                    <label  class="d-block">Contacto</label>
+                    <input  type="text" class="form-control pwstrength" data-indicator="pwindicator" name="tel" maxlength="9" autofocus required>
+                    <div class="invalid-feedback">
+                  contacto nao pode estar vazio
+                       
+                     </div>
+                   
+                  </div>
+               
+
+                <div class="form-group col-6">
+                  <label for="email">Email</label>
+                  <input id="email" type="email" class="form-control" name="email" autofocus required >
+                  <div class="invalid-feedback">
+                   E-mail pode estar vazio ou inválido
+                    
+                  </div>
+                 
+                </div>
+              </div>
+
+                <div class="row">
+                  <div class="form-group col-6">
+                    <label for="password" class="d-block">Password</label>
+                    <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" autofocus required>
+                    <div class="invalid-feedback">
+                      password nao pode estar vazio
+                       
+                     </div>
+                    <div id="pwindicator" class="pwindicator">
+                      <div class="bar"></div>
+                      <div class="label"></div>
+                    </div>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="password2" class="d-block">Password Confirmation</label>
+                    <input id="password2" type="password" class="form-control" name="password2" autofocus required >
+                    <div class="invalid-feedback">
+                      password Confirm nao pode estar vazio
+                      <p id="title"></p>
+                     </div>
+                     
+                  </div>
+                </div>
+
+               
+                <div class="row">
+                  <div class="form-group col-4">
+                    <label>Provincia:</label>
+                    <select required class="form-control " name="provincia" id="slctprovincia" onchange="populate(this.id,'slctmunicipio')" autofocus>
+                
+                      <option disabled="disabled" selected="selected"> Escolha a província</option>
+                      <option value="luanda">Luanda</option>
+                         <option value="benguela">Benguela</option>
+                         <option value="bengo">Bengo</option>
+                         <option value="bié">Bié</option>
+                         <option value="cabinda">Cabinda</option>
+                         <option value="cuando-cubango">Cuando-Cubango</option>
+                         <option value="cuanza norte">Cuanza Norte</option>
+                         <option value="cuanza sul">Cuanza Sul</option>
+                         <option value="cunene">Cunene</option>
+                         <option value="huambo">Huambo</option>
+                         <option value="huíla">Huíla</option>
+                         <option value="lunda norte">Lunda Norte</option>
+                         <option value="lunda sul">Lunda Sul</option>
+                         <option value="malange">Malange</option>
+                         <option value="moxico">Moxico</option>
+                         <option value="namibe">Namibe</option>
+                         <option value="uíge">Uíge</option>
+                         <option value="zaire">Zaire</option>
+                    
+                    </select>
+                    <div class="invalid-feedback">
+                      Provincia esta vazio
+                       
+                     </div>
+                    
+                  </div>
+                  <div class="form-group col-4">
+                    <label>Municipio:</label>
+                   
+                    <select autofocus required name="municipio" id="slctmunicipio" class="form-control"> <option disabled="disabled" selected="selected"> Escolha o municipio</option></select>
+                    <div class="invalid-feedback">
+                      Municipio esta vazio
+                       
+                     </div>
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="">Sexo</label>
+                    <select required class="form-control " name="sexo" autofocus>
+                
+                      <option disabled="disabled" selected="selected"> Escolha o sexo</option>
+                      <option value="MASCULINO">Masculino</option>
+                         <option value="FEMININO">Feminino</option>
+                         
+                         
+                    
+                    </select>
+
+                  </div>
+                </div>
+               
+                  <input type="hidden" name="role" value="2">
+                 
+                   
+                
+             
+               
+               
+               
+
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="agree" class="custom-control-input" id="agree" autofocus required>
+                    <label class="custom-control-label" for="agree">Dados estão todos certos</label>
+                    <div class="invalid-feedback">
+                      Condadas com isso?
+                       
+                     </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    Adicionar 
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer class="main-footer">
+        <div class="footer-left">
+          Copyright &copy; <script>
+                document.write(new Date().getFullYear())
+            </script>
+        </div>
+        <div class="footer-right">
+          
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="/assets/modules/jquery.min.js"></script>
+  <script src="/assets/modules/popper.js"></script>
+  <script src="/assets/modules/tooltip.js"></script>
+  <script src="/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="/assets/modules/moment.min.js"></script>
+  <script src="/assets/js/stisla.js"></script>
+
+ 
+  
+  <!-- JS Libraies -->
+  <script src="/assets/modules/datatables/datatables.min.js"></script>
+  <script src="/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  <script src="/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
+  <script src="/assets/modules/jquery-ui/jquery-ui.min.js"></script>
+  <script src="/assets/js/page/modules-ion-icons.js"></script>
+  <script src="/script/ApiProvincia-municipio.js"></script>
+
+  <!-- Page Specific JS File -->
+  <script src="/assets/js/page/modules-datatables.js"></script>
+  <script src="/assets/js/page/bootstrap-modal.js"></script>
+  <script src="/assets/modules/sweetalert/sweetalert2.all.min.js"></script>
+  <% if(certo.length >0){%>
+    <script>
+     Swal.fire(
+    'Showww!',
+    '`<%=certo %>`!',
+    'success'
+  )
+
+    </script>
+    <% }else if(errado.length >0) {%>
+      <script>
+        Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: '`<%=errado %>`!',
+
+})
+        
+      </script>
+      <% }%>
+  <script>
+  function confirmar(id){
+    
+Swal.fire({
+  title: 'Do you want to save the changes?',
+icon:'warning',
+  showCancelButton: true,
+  confirmButtonColor:'#3085d6',
+  cancelButtonColor:'#d33',
+  confirmButtonText: 'Confirmar',
+
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below   */
+  if (result.isConfirmed) {
+
+   window.location = '/admin/user/delete/'+id;
+  } else if (result.isDenied) {
+    Swal.fire('Erro ao eliminar', '', 'info')
+  }
+})
+  }
+  </script>
+  
+  <!-- Template JS File -->
+  <script src="/assets/js/scripts.js"></script>
+  <script src="/assets/js/custom.js"></script>
+</body>
+</html>

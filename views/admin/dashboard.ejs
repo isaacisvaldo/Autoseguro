@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<%- include partials/head.ejs %> 
+
+<body>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <!--Nav bar-->
+     <%- include partials/navbar.ejs %> 
+      <!--sidebar-->
+    
+<%- include partials/sidebar.ejs %> 
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <div class="section-header-breadcrumb">
+                  
+              <div class="breadcrumb-item"><a href="#">Modules</a></div>
+              <div class="breadcrumb-item active">Dashboard</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-primary text-white">
+                  <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Cliéntes</h4>
+                  </div>
+                  <div class="card-body">
+                    <%=user.length %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-primary text-white">
+                  <i class="fas fa-car"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4> Veículos</h4>
+                  </div>
+                  <div class="card-body">
+                    <%=veiculo.length %>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-primary text-white">
+                  <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4> Inscritos</h4>
+                  </div>
+                  <div class="card-body">
+                    <%=inscrito.length %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-primary text-white">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4> Pontos</h4>
+                  </div>
+                  <div class="card-body">
+                    <%=ponto.length %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+                       
+          </div>
+          <div class="row">
+            
+            <div class="col-md-12">
+             
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="barChart" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-12 col-sm-12">
+              <div class="card">
+                <div class="card-header">
+                  Tipos de Seguro
+                  </div>
+          
+                <div class="card-body">
+                  <canvas id="donutChart" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+                </div>
+                
+              </div>
+            </div>
+            
+            <div class="col-lg-8 col-md-12 col-12 col-sm-12">
+              <div class="card">
+                <div class="card-header">
+                  Marcas destacadas
+                  </div>
+                <div class="card-body">
+                  <canvas id="myChart" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+    
+                </div>
+                  
+              </div>
+          </div>
+  
+            
+                <div class="col-12">
+                  <div class="card">
+                   
+                    <div class="card-header">
+                     
+                      
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-striped" id="table-1">
+                          <thead>                                 
+                            <tr>
+                              <th>
+                                #
+                              </th>
+                              <th>Lat</th>
+                              <th>Lng</th>
+                              <th>Provincia</th>
+                              <th>Municipio</th>
+                              <th>Data</th>
+                             
+                            </tr>
+                          </thead>
+                          <tbody>   
+                            <% notificados.forEach(notificacao => { %>                              
+                            <tr>
+                              <td>
+                                <%= notificacao.id %> 
+                              </td>
+                              <td><%= notificacao.lat %> </td>
+                              <td><%= notificacao.lng %> </td>
+                              <td><%= notificacao.provincia %> </td>
+                              <td><%= notificacao.municipio %> </td>
+                              <td><%= notificacao.createdAt %> </td>
+                            
+  
+                           
+                            </tr>
+                           
+                            <% }) %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+           
+          </div>
+         
+        </section>
+      </div>
+    
+      <input type="hidden" id="u" value="<%=user.length %>">
+      <input type="hidden" id="v" value="<%=veiculo.length %>">
+      <input type="hidden" id="a" value="<%=tipo1.length %>">
+      <input type="hidden" id="p" value="<%= tipo3.length %>">
+     
+    
+    
+      <footer class="main-footer">
+        <div class="footer-left">
+          Copyright &copy; <script>
+                document.write(new Date().getFullYear())
+            </script>
+        </div>
+        <div class="footer-right">
+          
+        </div>
+      </footer>
+    </div>
+  </div>
+
+ <!-- General JS Scripts -->
+ <script src="/assets/modules/jquery.min.js"></script>
+ <script src="/assets/modules/popper.js"></script>
+ <script src="/assets/modules/tooltip.js"></script>
+ <script src="/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+ <script src="/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+ <script src="/assets/modules/moment.min.js"></script>
+ <script src="/assets/js/stisla.js"></script>
+ <script src="/assets/modules/datatables/datatables.min.js"></script>
+ <script src="/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+ <script src="/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
+ <script src="/assets/js/page/modules-datatables.js"></script>
+ <script src="/script/ApiProvincia-municipio.js"></script>
+ 
+ <script src="/assets/modules/sweetalert/sweetalert2.all.min.js"></script>
+ <% if(certo.length >0){%>
+   <script>
+    Swal.fire(
+   'Showww!',
+   '`<%=certo %>`!',
+   'success'
+ )
+
+   </script>
+   <% }else if(errado.length >0) {%>
+     <script>
+       Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: '`<%=errado %>`!',
+
+})
+       
+     </script>
+     <% }%>
+ <script>
+ function confirmar(id){
+   
+Swal.fire({
+ title: 'Do you want to save the changes?',
+icon:'warning',
+ showCancelButton: true,
+ confirmButtonColor:'#3085d6',
+ cancelButtonColor:'#d33',
+ confirmButtonText: 'Confirmar',
+
+}).then((result) => {
+ /* Read more about isConfirmed, isDenied below   */
+ if (result.isConfirmed) {
+
+  window.location = '/admin/user/delete/'+id;
+ } else if (result.isDenied) {
+   Swal.fire('Erro ao eliminar', '', 'info')
+ }
+})
+ }
+ </script>
+ 
+ <!-- JS Libraies -->
+ <script src="/assets/modules/simple-weather/jquery.simpleWeather.min.js"></script>
+ <script src="/assets/modules/chart.min.js"></script>
+ <script >
+  
+   const mes =[];
+    const resolvido =[];
+    const naoresolvido =[];
+    const total_n=[];
+    
+    ` <% meses2.forEach(element=>{%>`
+         
+          mes.push(` <%-element.mes%>`);
+          resolvido.push( `<%-element.resolvido %>`);
+          naoresolvido.push( `<%-element.naoresolvido %>`);
+          total_n.push( `<%-element.total %>`);
+         
+          ` <% })%> `
+        
+          var areaChartData = {
+      labels  : mes,
+      datasets: [
+        {
+          label               : 'Resolvido',
+          backgroundColor     : '#f39c12',
+          borderColor         : '#f39c12{',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : resolvido
+        },
+        {
+          label               : 'Não Resolvido',
+          backgroundColor     : 'rgba(210, 214, 222, 1)',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : naoresolvido
+        },
+		 {
+          label               : 'Total Alerta',
+          backgroundColor     : 'rgba(0,0,0,.2)',
+          borderColor         : 'rgba(0,0,0,.2)',
+          pointRadius         : false,
+          pointColor          : 'rgba(0,0,0,.2)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : total_n
+        },
+      ]
+    }
+
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+
+
+    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    new Chart(barChartCanvas, {
+      type: 'bar',
+      data: barChartData,
+      options: barChartOptions
+    })
+
+
+   //outro grafico
+    
+  $(function () {
+    
+       var a = document.getElementById('a');
+       var a= a.value.trim(); 
+
+       var p = document.getElementById('p');
+       var p= p.value.trim(); 
+     
+      var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+  var donutData        = {
+    labels: [
+       
+        'Contra Terceiro',
+       
+        'Todos os Riscos'
+        
+    ],
+    datasets: [
+      {
+        data: [`${a}`,`${p}`],
+        backgroundColor : ['#3c8dbc', 'rgb(221, 42, 42)', '#f39c12', '#ccc', '#00a65a'],
+      }
+    ]
+  }
+  var donutOptions     = {
+    maintainAspectRatio : false,
+    responsive : true,
+  }
+  //Create pie or douhnut chart
+  // You can switch between pie and douhnut using the method below.
+  new Chart(donutChartCanvas, {
+    type: 'doughnut',
+    data: donutData,
+    options: donutOptions
+  })
+  //Outro grafico--------------------_________________________________________________
+  
+   
+  
+   
+    const marcas =[];
+    const quantidades=[];
+    
+    ` <% marca.forEach(element=>{%>`
+         
+         
+          marcas.push( `<%-element.marca %>`);
+          quantidades.push( `<%-element.marcacount%>`);
+         
+          ` <% })%> `
+ 
+
+   const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: marcas,
+        datasets: [{
+            label: 'Apolice',
+            data: quantidades,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderWidth: 1
+        }
+      ]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+
+
+
+  })
+  </script>
+ <script src="/assets/modules/jqvmap/dist/jquery.vmap.min.js"></script>
+ <script src="/assets/modules/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+ <script src="/assets/modules/summernote/summernote-bs4.js"></script>
+ <script src="/assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
+
+ <!-- Page Specific JS File -->
+
+ 
+ <!-- Template JS File -->
+ <script src="/assets/js/scripts.js"></script>
+ <script src="/assets/js/custom.js"></script>
+</body>
+</html>

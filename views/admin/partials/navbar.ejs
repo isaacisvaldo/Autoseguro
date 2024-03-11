@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-lg main-navbar">
+  <form class="form-inline mr-auto">
+    <ul class="navbar-nav mr-3">
+      <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+      <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+    </ul>
+    
+  </form>
+  <ul class="navbar-nav navbar-right">
+    <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" title="contactos/Lids" data-toggle="tooltip" class="nav-link nav-link-lg message-toggle beep">
+      <i class="far fa-envelope" id="y"></i>
+      <% if(contactos.length == 0){%>
+       
+        <% }else if(contactos.length> 9){%>
+       <span class="notification">9+</span>
+       <% }else{%>
+       <span class="notification"><%= contactos.length%></span>
+       <% }%>
+    </a>
+      <div class="dropdown-menu dropdown-list dropdown-menu-right">
+        <div class="dropdown-header">Mensagens
+          <div class="float-right">
+            <a href="#">Informações</a>
+          </div>
+        </div>
+          
+        <div class="dropdown-list-content dropdown-list-message">
+          <% contactos.forEach(contactos => { %> 
+          <a  href="/admin/iteragir/<%= contactos.id %>" class="dropdown-item">
+            
+            <div class="dropdown-item-avatar">
+              <img alt="image" src="/assets/img/avatar/avatar-3.png" class="rounded-circle">
+            </div>
+            <div class="dropdown-item-desc">
+              <b><%= contactos.name %></b>
+              <p><%= contactos.subject %></p>
+              <div class="time"><%= contactos.createdAt %> </div>
+            </div>
+          </a>
+          <p><a href="/marcarlido/<%= contactos.id %>">lido</a></p>
+          <% }) %>
+        </div>
+      </div>
+    </li>
+    <li class="dropdown "><a href="/admin/relatario/notify" title="Relatorio das notificacoes" data-toggle="tooltip" class="nav-link nav-link-lg">
+      <i class="far fa-clipboard" id="y"></i>
+      <% if(relatorio_s.length == 0){%>
+       
+        <% }else if(relatorio_s.length > 9){%>
+       <span class="notification">9+</span>
+       <% }else{%>
+       <span class="notification"><%=relatorio_s.length %></span>
+       <% }%>
+    </a>
+    </li>
+    <li class="dropdown dropdown-list-toggle"><a href="/admin/notificacao" title="Notificações emitidos" data-toggle="tooltip" class="nav-link  nav-link-lg ">
+      <i class="far fa-bell" id="y"></i>
+      
+<% if(notificacao.length == 0){%>
+  
+   <% }else if(notificacao.length > 9){%>
+  <span class="notification">9+</span>
+  <% }else{%>
+  <span class="notification"><%=notificacao.length %></span>
+  <% }%>
+      
+    </a>
+      
+    </li>
+     
+    <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+      <img alt="image" src="/uploads/<%= admin.img %> " class="rounded-circle">
+      <div class="d-sm-none d-lg-inline-block"><%= admin.user_name%> </div></a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <div class="dropdown-title">Usuario logado</div>
+        <a href="/admin/index" class="dropdown-item has-icon">
+          <i class="far fa-user"></i> Perfil
+        </a>
+       
+        <div class="dropdown-divider"></div>
+        <a href="/logout" class="dropdown-item has-icon text-danger">
+          <i class="fas fa-sign-out-alt"></i> Sair
+        </a>
+      </div>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Seguro.Auto</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="/assets/modules/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/modules/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/assets/modules/ionicons/css/ionicons.min.css">
+
+  <!-- CSS Libraries -->
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+    <!--Mapa-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+<!-- Start GA -->
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-94034622-3');
+</script>
+<!-- /END GA --></head>
+
+<body>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+       <!--Nav bar-->
+       <%- include ../partials/navbar.ejs %> 
+       <!--sidebar-->
+     
+ <%- include ../partials/sidebar.ejs %> 
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item"><a href="#"> Notificar</a></div>
+            
+            </div>
+          </div>
+
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Mapa</h4>
+                  </div>
+                  <form method="POST" action="/user/notificar/save" class="needs-validation" novalidate="" enctype="multipart/form-data" >
+                  <div class="card-body">
+                    <div id="mapid" data-height="300" ></div>
+                        <input type="hidden" name="lat" >
+                        <input type="hidden" name="lng" >
+                   
+                    <div class="mt-4">
+                      <ul id="instructions" class="list-unstyled list-unstyled-border">O Assegurado(a)</ul>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-6">
+                        <input   class="form-control pwstrength" value="Acidente Rodoviario" disabled>
+                        
+                      </div>
+                      <div class="form-group col-6">
+                        <input   class="form-control" value=" Proprietario" disabled >
+   
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-6">
+                        <input   class="form-control pwstrength" value="<%= user.name %> " disabled>
+                        
+                      </div>
+                      <div class="form-group col-6">
+                        <input   class="form-control" value=" <%= user.endereco %> " disabled >
+   
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-6">
+                        <input   class="form-control pwstrength" value="<%= user.provincia %> " disabled>
+                        
+                      </div>
+                      <div class="form-group col-6">
+                        <input   class="form-control" value=" <%= user.municipio %> " disabled >
+   
+                      </div>
+                    </div>
+                    <div class="mt-4">
+                      <ul id="instructions" class="list-unstyled list-unstyled-border">Viatura em Questão</ul>
+                    </div>
+                      <div class="row">
+  
+                      <div class="form-group col-6">
+                        <label for="frist_name">Matricula da viatura:</label>
+                        <select class="form-control selectric" name="matricula">
+                          
+                          <% veiculo.forEach(veiculo=> { %>
+                            <option value="<%= veiculo.matricula %> ">
+                              <%= veiculo.matricula %>
+                            </option>
+                            <% }) %>
+                        </select>
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="frist_name">Imagen da viatura</label>
+                        <div class="custom-file">
+                          <input type="file" class="form-control" id="customFile" name="image" onchange= "ValidarExt()" autofocus
+                          required>  
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-4">
+                      <ul id="instructions" class="list-unstyled list-unstyled-border">Danos Terceiro</ul>
+                    </div>
+                      <div class="form-group">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio"  name="danos" value="Sim"  id="exampleRadios1" checked>
+                          <label class="form-check-label" for="exampleRadios1">
+                          SIM
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio"  name="danos" value="Nao"  id="exampleRadios2" checked>
+                          <label class="form-check-label" for="exampleRadios2">
+                           Não
+                          </label>
+                        </div>
+                      </div>
+  
+                      <div class="mt-4">
+                        <ul id="instructions" class="list-unstyled list-unstyled-border">Descreve o Aconteci...</ul>
+                      </div>
+                     
+                      <div class="form-group">
+                      <textarea class="form-control" placeholder="textarea" rows="4"
+                                                name="descricao" autofocus
+                      required></textarea>
+                      </div>
+                      <div class="form-divider">
+                        <input  type="hidden" class="form-control" name="id" value="<%= user.id %> ">
+                      </div>
+  
+                      <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" name="agree" class="custom-control-input" id="agree" autofocus
+                            required>
+                          <label class="custom-control-label" for="agree">Selecionar para estar tudo certo</label>
+                          
+                        </div>
+                      </div>
+  
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">
+                          Notificar Auto seguro
+                        </button>
+                      </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      
+        <footer class="main-footer">
+            <div class="footer-left">
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear())
+              </script>
+            </div>
+            <div class="footer-right">
+
+            </div>
+          </footer>
+    </div>
+  </div>
+  <script src="/assets/modules/sweetalert/sweetalert2.all.min.js"></script>
+ 
+  <script>
+
+    function ValidarExt(){
+      var customFile = document.getElementById('customFile');
+      var customRuta = customFile.value;
+      var customPermitidas = /(.jpg|.png|.PNG.|JPG|.jpeg|.JPEG)$/i;
+      if(!customPermitidas.exec(customRuta))
+      {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Extensão não permitido!',
+
+        })
+        customFile.value = '';
+        return false
+      }
+    }
+  </script>
+  <!-- General JS Scripts -->
+  <script src="/assets/modules/jquery.min.js"></script>
+  <script src="/assets/modules/popper.js"></script>
+  <script src="/assets/modules/tooltip.js"></script>
+  <script src="/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="/assets/modules/moment.min.js"></script>
+  <script src="/assets/js/stisla.js"></script>
+  
+  <!-- JS Libraies -->
+  <script src="/script/ApiProvincia-municipio.js"></script>
+  <script src="/script/Map-notificar.js"></script>
+  <script src="/assets/modules/gmaps.js"></script>
+  <script src="/assets/js/page/modules-ion-icons.js"></script>
+  <script src="/assets/modules/sweetalert/sweetalert2.all.min.js"></script>
+  <!-- Page Specific JS File -->
+  <% if(errado.length >0) {%>
+    <script>
+      Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: '<%=errado %>!',
+
+})
+      
+    </script>
+   <% }else if(info.length >0) {%>
+    <script>
+      Swal.fire({
+icon: 'info',
+title: 'Opa...',
+text: '<%=info %>!',
+
+})
+      
+    </script>
+    <% }%>
+
+ 
+  
+  <!-- Template JS File -->
+  <script src="/assets/js/scripts.js"></script>
+  <script src="/assets/js/custom.js"></script>
+</body>
+</html>

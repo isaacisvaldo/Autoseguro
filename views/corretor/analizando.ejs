@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Components &rsaquo; Wizard &mdash; Stisla</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="/assets/modules/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/modules/fontawesome/css/all.min.css">
+
+  <!-- CSS Libraries -->
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+<!-- Start GA -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-94034622-3');
+</script>
+<!-- /END GA --></head>
+
+<body>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <%- include partials/navbar.ejs %> 
+      <!--sidebar-->
+    
+<%- include partials/sidebar.ejs %> 
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+              <div class="breadcrumb-item"><a href="#">Components</a></div>
+            
+            </div>
+          </div>
+
+          <div class="section-body">
+     <% if(apolice != null) {%> 
+            
+              <div class="col-12">
+                <div class="row">
+                <% if(apolice.responsabilidade_civil == 1 ){%>
+                  <div class="col-lg-4 mb-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-user-shield"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Responsabilidade civil.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                <% if(apolice.ocupantes == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-user"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Ocupantes.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                <% if(apolice.furtos == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Furtos ou Roubos.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                
+                <% if(apolice.fenomenos_naturais== 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Fenomenos Naturais.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                <% if(apolice.quebras_isoladas_vidros == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Quebras de Vidros.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                
+                <% if(apolice.queda_antenas == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Queda de antenas.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                
+                <% if(apolice.queda_Paineis_solares == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Queda de Paines Solares.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+              
+                <% if(apolice.vandalismo == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Vandalismo Ocorrentes.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                
+                <% if(apolice.honorarios_tecnicos == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Honorarios Tecnicos.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                <% if(apolice.incendio  == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Incédio.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+              
+                <% if(apolice.choque == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Choque.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                
+                <% if(apolice.colisao == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Colisão.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                <% if(apolice.capotamento == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Capotamento Ocorrentes.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                 
+                <% if(apolice.raio_explosao == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Raios explosão.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                <% if(apolice.assistentia_viagem == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Assistencia em Viagem.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+               
+                <% if(apolice.protecao_familia == 1){%>
+                  <div class="col-lg-4">
+                    <div class="card card-large-icons">
+                      <div class="card-icon bg-primary text-white">
+                        <i class="fas fa-car"></i>
+                      </div>
+                      <div class="card-body">
+                        <p>Proteção a Familia.</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                 <%}%>
+                
+
+              </div>
+              </div>
+            </div>
+          <%}else {%>  
+            <div class="col-12 col-md-12 col-sm-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Falha encontrado</h4>
+                </div>
+                <div class="card-body">
+                  <div class="empty-state" data-height="250">
+                    <img src="/pages/img/car-crash-pana.svg" alt="" data-height="200">
+                    <h2>HTTP Falha encontrado</h2>
+                    <p class="lead">
+                      Infelizmente esse veiculo não tem apolice para podermos checar as suas coberturas
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <% } %> 
+         
+          </div>
+        </section>
+      </div>
+      <footer class="main-footer">
+        <div class="footer-left">
+          Copyright &copy; <script>
+                document.write(new Date().getFullYear())
+            </script>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="/assets/modules/jquery.min.js"></script>
+  <script src="/assets/modules/popper.js"></script>
+  <script src="/assets/modules/tooltip.js"></script>
+  <script src="/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="/assets/modules/moment.min.js"></script>
+  <script src="/assets/js/stisla.js"></script>
+  
+  <!-- JS Libraies -->
+
+  <!-- Page Specific JS File -->
+  
+  <!-- Template JS File -->
+  <script src="/assets/js/scripts.js"></script>
+  <script src="/assets/js/custom.js"></script>
+</body>
+</html>
