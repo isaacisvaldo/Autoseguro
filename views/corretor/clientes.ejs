@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<%- include partials/head.ejs %>
+
+
+  <body>
+    <div id="app">
+      <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+        <!--Nav bar-->
+        <%- include partials/navbar.ejs %>
+          <!--sidebar-->
+
+          <%- include partials/sidebar.ejs %>
+            <!-- Main Content -->
+            <div class="main-content">
+              <section class="section">
+                <div class="section-header">
+
+                  <div class="section-header-breadcrumb">
+
+                    <div class="breadcrumb-item"><a href="#">Modules</a></div>
+                    <div class="breadcrumb-item active">veiculo</div>
+                  </div>
+                </div>
+
+                <div class="section-body">
+
+
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card">
+
+
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <table class="table table-striped" id="table-1">
+                              <thead>
+                                <tr>
+
+                                  <th>Titular</th>
+                                  <th>Img</th>
+                                  <th>Marca</th>
+                                 
+                                  <th>Matricula</th>
+                                  <th>Estado</th>
+                                  <th>Nº Apolice</th>
+                                  <th>Sexo</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% apolice.forEach(dados=> { %>
+                                  <tr>
+                                   
+                                  <td> <%= dados.user.name%></td>
+
+                                    <td>
+                                      <img alt="image" src="/uploads/<%= dados.user.img %> " class="rounded-circle"
+                                        width="35" data-toggle="tooltip" title="<%= dados.user.user_name %> ">
+                                    </td>
+                                    <td>
+                                      <%= dados.marca%>
+                                    </td>
+                                    <td>
+                                      <%= dados.matricula %>
+                                    </td>
+                                       <td>
+                                      <% if(dados.estado==0){%>
+                                        <div class="badge badge-primary">
+                                          <i class="fa fa-spinner fa-spin"></i>Em
+                                          espera
+                                        </div>
+                                        <% } else if(dados.estado==1){%>
+                                          <div class="badge badge-success">
+                                            Em uso
+                                          </div>
+                                          <% }else{%>
+                                            <div class="badge badge-warning">
+                                              Fora do Prazo
+                                            </div>
+                                            <% }%>
+                                          </td>
+                                            <td>
+                                              <div class="badge badge-light">
+                                                <%= dados.secret %>
+                                              </div>
+                                              </td>
+                                              <td>
+                                                <% if(dados.user.sexo =="MASCULINO"){ %>
+                                                  <div class="badge badge-light">
+                                                    <%= dados.user.sexo %>
+                                                  </div>
+                                                  <%   }else{ %>
+                                                    <div class="badge badge-warning">
+                                                      <%= dados.user.sexo %>
+                                                    </div>
+                                                    <%  } %>
+                                                </td>
+                           
+                                  </tr>
+
+                                  <% }) %>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                </div>
+              </section>
+            </div>
+
+            <footer class="main-footer">
+              <div class="footer-left">
+                Copyright &copy;
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>
+              </div>
+              <div class="footer-right">
+
+              </div>
+            </footer>
+      </div>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="/assets/modules/jquery.min.js"></script>
+    <script src="/assets/modules/popper.js"></script>
+    <script src="/assets/modules/tooltip.js"></script>
+    <script src="/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="/assets/modules/moment.min.js"></script>
+    <script src="/assets/js/stisla.js"></script>
+
+
+
+    <!-- JS Libraies -->
+    <script src="/assets/modules/datatables/datatables.min.js"></script>
+    <script src="/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
+    <script src="/assets/modules/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/assets/js/page/modules-ion-icons.js"></script>
+    <script src="/script/ApiProvincia-municipio.js"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="/assets/js/page/modules-datatables.js"></script>
+    <script src="/assets/js/page/bootstrap-modal.js"></script>
+   
+
+
+          <!-- Template JS File -->
+          <script src="/assets/js/scripts.js"></script>
+          <script src="/assets/js/custom.js"></script>
+  </body>
+
+  </html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Seguro.Auto</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="/assets/modules/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/modules/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/assets/modules/ionicons/css/ionicons.min.css">
+
+  <!-- CSS Libraries -->
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+  integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+  crossorigin=""></script>
+  <link rel="stylesheet" href="/script/t.css">
+
+<style>
+  .map {
+ 
+    width: 100%;
+    height: 500px;
+  }
+</style>
+
+</head>
+
+<body>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+       <!--Nav bar-->
+       <%- include partials/navbar.ejs %> 
+       <!--sidebar-->
+     
+ <%- include partials/sidebar.ejs %> 
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>Mapa dinâmico</h1>
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+              <div class="breadcrumb-item"><a href="#"> Maps</a></div>
+            
+            </div>
+          </div>
+
+          <div class="section-body">
+           
+            <p class="section-lead">
+             .
+            </p>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4></h4>
+                  </div>
+                  <div class="card-body">
+                    <div id="map" class="map"></div>
+                    
+                    <div class="text-center mt-4">
+                     <!--Aqui esta um botao-->
+                    </div>
+                    <div class="mt-4">
+                      <ul id="instructions" class="list-unstyled list-unstyled-border"></ul>
+                    </div>
+                  </div>
+                </div>
+               
+                  
+              </div>
+              
+         
+            </div>
+            <div class="row">
+              <div class="col-12 col-md-6 col-lg-6">
+               
+              <% if(apolice.tipo_seguro == 3){%> 
+                     O que o seu seguro Cobre
+                  
+                      <div class="pricing">
+                        <div class="pricing-title">
+                         Contra todos os riscos
+                        </div>
+                        <div class="pricing-padding">
+                          <div class="pricing-price">
+                          </div>
+                          <div class="pricing-details">
+                            <div class="pricing-item">
+                              <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
+                              <div class="pricing-item-label">Danos Terceiros </div>
+                            </div>
+                            <div class="pricing-item">
+                              <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
+                              <div class="pricing-item-label">Danos  proprio</div>
+                            </div>
+                            <div class="pricing-item">
+                              <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
+                              <div class="pricing-item-label">Capotamento,choque</div>
+                            </div>
+                            <div class="pricing-item">
+                              <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
+                              <div class="pricing-item-label">Colisão</div>
+                            </div>
+                            <div class="pricing-item">
+                              <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
+                              <div class="pricing-item-label">Furto ou Roubo</div>
+                            </div>
+                            <div class="pricing-item">
+                              <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
+                              <div class="pricing-item-label">Fenómenos da Natureza</div>
+                            </div>
+                            <div class="pricing-item">
+                              <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
+                              <div class="pricing-item-label">Perda Total</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="pricing-cta">
+                          
+                        </div>
+                      </div>
+                    
+                <%}else{%> 
+                O que o seu Seguro Cobre 
+                <div class="pricing">
+                  <div class="pricing-title">
+                  Seguro Contra Terceiros
+                  </div>
+                  <div class="pricing-padding">
+                    <div class="pricing-price">
+                    </div>
+                    <div class="pricing-details">
+                      <div class="pricing-item">
+                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
+                        <div class="pricing-item-label">Danos Terceiro</div>
+                      </div>
+                      <div class="pricing-item">
+                        <div class="pricing-item-icon bg-danger text-white"><i class="fas fa-times"></i></div>
+                        <div class="pricing-item-label">Danos  proprio</div>
+                      </div>
+                      <div class="pricing-item">
+                        <div class="pricing-item-icon bg-danger text-white"><i class="fas fa-times"></i></div>
+                        <div class="pricing-item-label">Capotamento</div>
+                      </div>
+                      <div class="pricing-item">
+                        <div class="pricing-item-icon bg-danger text-white"><i class="fas fa-times"></i></div>
+                        <div class="pricing-item-label">Choque</div>
+                      </div>
+                      <div class="pricing-item">
+                        <div class="pricing-item-icon bg-danger text-white"><i class="fas fa-times"></i></div>
+                        <div class="pricing-item-label">Colisão</div>
+                      </div>
+                      <div class="pricing-item">
+                        <div class="pricing-item-icon bg-danger text-white"><i class="fas fa-times"></i></div>
+                        <div class="pricing-item-label">Furto ou Roubo</div>
+                      </div>
+                      <div class="pricing-item">
+                        <div class="pricing-item-icon bg-danger text-white"><i class="fas fa-times"></i></div>
+                        <div class="pricing-item-label">Perda Total</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pricing-cta">
+                   
+                  </div>
+                </div>
+                  <%}%> 
+               
+               
+              </div>
+              <div class="col-12 col-md-6 col-lg-6">
+                Dados do Veículo
+                
+                <div class="row">
+                  <div class="form-group col-6">
+                    
+                    <input id="password" disabled class="form-control pwstrength" value="Matricula:<%= veiculo.matricula %>" >
+                    </div>
+                    <div class="form-group col-6">
+                      
+                      <input id="password2" disabled class="form-control" value="Nº Cilindro:<%= veiculo.cilindrada%>">
+                       </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-6">
+                      
+                      <input id="password" disabled class="form-control pwstrength" value="Nº Quadro:<%= veiculo.numero_quadro%>" >
+                      </div>
+                      <div class="form-group col-6">
+                        
+                        <input id="password2" disabled class="form-control" value="Combustivel:<%= veiculo.combustivel %>">
+                         </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-6">
+                        
+                        <input id="password" disabled class="form-control pwstrength" value="Peso:<%= veiculo.peso %>" >
+                        </div>
+                        <div class="form-group col-6">
+                          
+                          <input id="password2" disabled class="form-control" value="Tara:<%= veiculo.tara %> KG">
+                           </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-6">
+                          
+                          <input id="password" disabled class="form-control pwstrength" value="Tipo Caixa:<%= veiculo.tipo_caixa %>" >
+                          </div>
+                          <div class="form-group col-6">
+                            
+                            <input id="password2" disabled class="form-control" value="Distancia Eixo:<%= veiculo.distancia_eixo %> Cm">
+                             </div>
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-6">
+                            
+                            <input id="password" disabled class="form-control pwstrength" value="Nº Cilindro:<%= veiculo.numero_cilindro%>" >
+                            </div>
+                            <div class="form-group col-6">
+                              
+                              <input id="password2" disabled class="form-control" value="Nº Motor:<%= veiculo.numero_motor%>">
+                               </div>
+                               <div class="form-group col-12">
+                              
+                                <div class=" text-center">
+                                  Aseegurado:
+                          <div class="badge badge-success">
+                            <i class="fas fa"></i><%= veiculo.user.name%>
+                        </div>
+                        
+                          
+                            Nº Apolice:<%= apolice.secret %> 
+                           
+                          
+              
+                                   <hr>
+                                  </div>
+                                 </div>
+                                
+                                     
+                          </div>
+
+                  </div>
+                  <div class="col-12 col-md-12 col-lg-12">
+                      
+                    <div class=" text-center">    
+                    <!--  <a href=" <%= not1.id %> "
+                        class="btn btn-danger btn-icon icon-left btn-round"  data-toggle="tooltip" title="Relatorio">
+                        Sem Envolvimento </a>   -->       
+                <a href="/tecnico/relatar/ <%= not1.id %> "
+                  class="btn btn-primary btn-icon icon-left btn-round"  data-toggle="tooltip" title="Relatorio">
+                  Submeter Relatorio </a>
+               
+              
+  
+                       <hr>
+                      </div>
+                  </div>
+                  
+                </div>
+     
+          </div>
+        </section>
+      </div>
+    <input type="hidden" id="lat" value="<%= not1.lat %> ">
+    <input type="hidden" id="lng" value="<%= not1.lng %> ">
+        <footer class="main-footer">
+            <div class="footer-left">
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear())
+              </script>
+            </div>
+            <div class="footer-right">
+
+            </div>
+          </footer>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
+  <script src="/assets/modules/sweetalert/sweetalert2.all.min.js"></script>
+  <% if(certo.length >0){%>
+    <script>
+     Swal.fire(
+    'Showww!',
+    '<%=certo %>!',
+    'success'
+  )
+
+    </script>
+    <% }else if(errado.length >0) {%>
+      <script>
+        Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: '<%=errado %>!',
+
+})
+        
+      </script>
+      <% }%>
+ 
+ 
+<script> 
+function confirmar(id){
+
+    
+Swal.fire({
+  title: 'Tens a certeza que deseja executar esta acção?',
+icon:'warning',
+  showCancelButton: true,
+  confirmButtonColor:'#3085d6',
+  cancelButtonColor:'#d33',
+  confirmButtonText: 'Confirmar',
+
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below   */
+  if (result.isConfirmed) {
+
+   window.location = '/tecnico/relatar/'+id;
+  } else if (result.isDenied) {
+    Swal.fire('Erro ao eliminar', '', 'info')
+  }
+})
+  }
+
+ </script>
+
+
+  <!-- General JS Scripts -->
+  <script src="/assets/modules/jquery.min.js"></script>
+  <script src="/assets/modules/popper.js"></script>
+  <script src="/assets/modules/tooltip.js"></script>
+  <script src="/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="/assets/modules/moment.min.js"></script>
+  <script src="/assets/js/stisla.js"></script>
+  
+  <!-- JS Libraies -->
+  <script src="/script/Corretorrotas.js"></script>
+  <script src="/assets/modules/gmaps.js"></script>
+  <script src="/assets/js/page/modules-ion-icons.js"></script>
+
+  <!-- Page Specific JS File -->
+ 
+  
+  <!-- Template JS File -->
+  <script src="/assets/js/scripts.js"></script>
+  <script src="/assets/js/custom.js"></script>
+</body>
+</html>

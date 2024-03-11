@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Seguro.Auto</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="/assets/modules/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/modules/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/assets/modules/ionicons/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="/assets/modules/summernote/summernote-bs4.css">
+  <link rel="stylesheet" href="/assets/modules/datatables/datatables.min.css">
+  <link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css">
+
+  <!-- CSS Libraries -->
+
+  <!-- Template CSS -->
+  
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+    <!--Mapa-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+<!-- Start GA -->
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-94034622-3');
+</script>
+<!-- /END GA --></head>
+
+<body>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+       <!--Nav bar-->
+       <%- include partials/navbar.ejs %> 
+       <!--sidebar-->
+     
+ <%- include partials/sidebar.ejs %> 
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+              <div class="breadcrumb-item"><a href="#"> Mapa</a></div>
+            
+            </div>
+          </div>
+
+          <div class="section-body">
+
+
+
+
+            
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Mapa</h4>
+                  </div>
+                  <div class="card-body">
+                    <div id="mapid" data-height="600"></div>
+                    <div class="text-center mt-4">
+                      <a href="/admin/vews_points/create"  id="start-travel" >
+                      <h1><i class="ion-plus-circled"  title="Adicionar novo ponto" data-toggle="tooltip" ></i></h1>  
+                      </a>
+                    </div>
+                    <div class="mt-4">
+                      <ul id="instructions" class="list-unstyled list-unstyled-border"></ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>                                 
+                          <tr>
+                            <th>
+                              #
+                            </th>
+                            <th>Lat</th>
+                            <th>Lng</th>
+                            <th>Entidade</th>
+                            <th>Nome</th>
+                            <th>Whatsapp</th>
+                            <th>Acção</th>
+                           
+                          </tr>
+                        </thead>
+                        <tbody>   
+                          <% dados.forEach(dados => { %>                              
+                          <tr>
+                            <td>
+                              <%= dados.id %> 
+                            </td>
+                            <td><%= dados.lat %> </td>
+                            <td><%= dados.lng %> </td>
+                            <td><% if(dados.entidade ==0 ){%>
+                                 Seguradora Auto
+                              <%  }else{%>
+                                    Oficina
+                                <%  }%> </td>
+                            <td><%= dados.name %> </td>
+                            <td><%= dados.whatsapp%>  </td>
+                          
+      
+                            <td>
+                              <div class=" dropdown">
+                                <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+                                <div class="dropdown-menu">
+                                  <div class="dropdown-title">Opções</div>
+                                  <a class="dropdown-item has-icon" href="<%= dados.id %> " title="Detalhes Usuário" data-toggle="tooltip"><i class="fas fa-eye"></i> Ver</a>
+                                  <div class="dropdown-divider"></div>
+                  
+                                </div>
+                              </div>
+                           
+                            </td>
+                          </tr>
+                         
+                          <% }) %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="pontos">
+        <% dados.forEach(dados=>{%>
+            <span hidden
+                    data-id= "<%=  dados.id%>" 
+                    data-name= "<%= dados.name%> "
+                    data-lat="<%= dados.lat%> "
+                    data-lng="<%= dados.lng%>" 
+                    data-descricao="<%= dados.descricao%> "
+                   data-Whatsapp="<%= dados.whatsapp%> "                      
+                   > </span>
+            <% })%>
+        </div>
+        <footer class="main-footer">
+            <div class="footer-left">
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear())
+              </script>
+            </div>
+            <div class="footer-right">
+
+            </div>
+          </footer>
+    </div>
+  </div>
+  <script src="/assets/modules/sweetalert/sweetalert2.all.min.js"></script>
+  <% if(certo.length >0){%>
+    <script>
+     Swal.fire(
+    'Showw!',
+    '<%=certo %>!',
+    'success'
+  )
+
+    </script>
+    <% }else if(errado.length >0) {%>
+      <script>
+        Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: '<%=errado %>!',
+
+})
+        
+      </script>
+      <% }%>
+  <script>
+    function confirmar(id){
+      
+  Swal.fire({
+    title: 'Tens a certeza que deseja executar esta acção?',
+  icon:'warning',
+    showCancelButton: true,
+    confirmButtonColor:'#3085d6',
+    cancelButtonColor:'#d33',
+    confirmButtonText: 'Confirmar',
+  
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below   */
+    if (result.isConfirmed) {
+  
+     window.location = '/admin/points/delete/'+id;
+    } else if (result.isDenied) {
+      Swal.fire('Erro ao eliminar', '', 'info')
+    }
+  })
+    }
+    function editar(id){
+
+      
+Swal.fire({
+  title: 'Tens a certeza que desejas editar?',
+icon:'warning',
+  showCancelButton: true,
+  confirmButtonColor:'#3085d6',
+  cancelButtonColor:'#d33',
+  confirmButtonText: 'Confirmar',
+
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below   */
+  if (result.isConfirmed) {
+
+   window.location = '/admin/vews_points/edit/'+id;
+  } else if (result.isDenied) {
+    Swal.fire('Erro ao eliminar', '', 'info')
+  }
+})
+  }
+   </script>
+
+  <!-- General JS Scripts -->
+<!-- General JS Scripts -->
+<script src="/assets/modules/jquery.min.js"></script>
+<script src="/assets/modules/popper.js"></script>
+<script src="/assets/modules/tooltip.js"></script>
+<script src="/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+<script src="/assets/modules/moment.min.js"></script>
+<script src="/assets/js/stisla.js"></script>
+
+
+
+<!-- JS Libraies -->
+<script src="/assets/modules/datatables/datatables.min.js"></script>
+<script src="/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script src="/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
+<script src="/assets/modules/jquery-ui/jquery-ui.min.js"></script>
+<script src="assets/js/page/modules-ion-icons.js"></script>
+  <script src="/script/Admin-map.js"></script>
+  <script src="/assets/js/page/modules-datatables.js"></script>
+  <script src="/assets/js/page/modules-ion-icons.js"></script>
+
+  <!-- Page Specific JS File -->
+ 
+  
+  <!-- Template JS File -->
+  <script src="/assets/js/scripts.js"></script>
+  <script src="/assets/js/custom.js"></script>
+</body>
+</html>
