@@ -8,7 +8,7 @@ const routes = Router()
 routes.use('/user',userRouter)
 routes.use('/funcionario',funcionarioRouter)
 routes.use('/admin',adminRouter)
-routes.use('/',homeRoute)
+routes.use('',homeRoute)
 
 
 

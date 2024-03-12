@@ -16,6 +16,26 @@ export class HomeController {
       return errorResponse(res,'Server Error',500)  
     }
   }
+  async formlogin(req: Request, res: Response, ): Promise<unknown> {
+    try { 
+        res.render("form/login",{info:req.flash('info'),certo:req.flash('certo'),errado:req.flash('errado')})
+ 
+    } catch (error) {
+      console.log(error);
+      return errorResponse(res,'Server Error',500)  
+    }
+  }
+  async login(req: Request, res: Response, ): Promise<unknown> {
+    try { 
+      const {email,password} = req.body; 
+      console.log(req.body)
+    
+ 
+    } catch (error) {
+      console.log(error);
+      return errorResponse(res,'Server Error',500)  
+    }
+  }
 
   
 }
