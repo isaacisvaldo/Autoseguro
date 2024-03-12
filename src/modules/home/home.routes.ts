@@ -10,5 +10,5 @@ const homeController = new HomeController();
 const homeRoute = Router()
 homeRoute.get('/', homeController.index)
 homeRoute.get('/login', homeController.formlogin)
-homeRoute.post('/authenticate', loginRules,validate, homeController.formlogin)
+homeRoute.post('/authenticate', loginRules,validate, homeController.login)
 export default homeRoute;

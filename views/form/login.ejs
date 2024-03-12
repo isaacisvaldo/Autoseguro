@@ -40,7 +40,7 @@
               <div class="card-header"><h4>Iniciar sessão</h4></div>
 
               <div class="card-body">
-                <form method="POST" action="#" class="needs-validation" novalidate="">
+                <form  class="needs-validation" novalidate="">
                   <div class="form-group">
                     <label for="email">Usuário:</label>
                     <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
@@ -73,7 +73,7 @@
                   </div>
 
                   <div class="form-group">
-                    <button type="submit" onclick="postData()" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                    <button  onclick="postData()" class="btn btn-primary btn-lg btn-block" tabindex="4">
                      Entrar
                     </button>
                   </div>
@@ -138,7 +138,7 @@ text: 'Algo deu errado!',
     function postData(){
       const email = document.getElementById('email').value;
 const password = document.getElementById('password').value;
-      fetch('http://localhost:3000/authenticate', {
+      fetch("http://localhost:3000/authenticate", {
      method: 'POST',
     headers: {
     'Content-Type': 'application/json'

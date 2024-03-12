@@ -28,7 +28,7 @@ export class HomeController {
   async login(req: Request, res: Response, ): Promise<unknown> {
     try { 
       const {email,password} = req.body; 
-      console.log(req.body)
+      return successResponse(res,'','Cool !',200)  
     
  
     } catch (error) {
